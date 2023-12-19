@@ -79,7 +79,7 @@ interface ApiService {
         @Path("transactionId") transactionId: String
     ): Call<DeleteTransactionResponse>
 
-    @GET("prediction?money={money}")
+    @GET("prediction")
     suspend fun getPrediction(
         @Header("Authorization") authorization: String,
         @Query("money") money : String
