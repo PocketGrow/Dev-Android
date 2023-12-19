@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFF6E6"
+    tools:context=".ui.prediction.PredictionFragment"
+    android:layout_gravity="bottom"
+    android:layout_marginBottom="?android:attr/actionBarSize">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/predictionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/prediction_text"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:padding="16dp"
+        android:fontFamily="@font/montserrat"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+    <LinearLayout
+        android:id="@+id/kotakNama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/rectangle"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textNama"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="start"
+            android:layout_weight="1.5"
+            android:textStyle="bold"
+            android:text="Time Machine"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/montserrat"/>
+
+        <TextView
+            android:id="@+id/nilaiNama"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:gravity="start"
+            android:layout_weight="1.5"
+            android:textStyle="normal"
+            android:text="Investment Value /Month "
+            android:textSize="20sp"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:orientation="horizontal"
+            android:layout_marginBottom="32dp"
+            android:gravity="start">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp."
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/nominalInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nominalTextInvestmentValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Rupiah"
+                    android:inputType="numberDecimal" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/kotakBulan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/rectangle"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textBulan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="@string/kapan_investasi"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"/>
+
+        <RadioGroup
+            android:id="@+id/radioGroupBulan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp">
+
+            <RadioButton
+                android:id="@+id/radioButton1Tahun"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:background="@drawable/custom_radio_button"
+                android:gravity="center"
+                android:text="1 Year"/>
+
+            <RadioButton
+                android:id="@+id/radioButton3Tahun"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:background="@drawable/custom_radio_button"
+                android:gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="3 Year"/>
+
+            <RadioButton
+                android:id="@+id/radioButton5Tahun"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:background="@drawable/custom_radio_button"
+                android:gravity="center"
+                android:text="5 Year"/>
+
+            <RadioButton
+                android:id="@+id/radioButton10Tahun"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:button="@null"
+                android:background="@drawable/custom_radio_button"
+                android:gravity="center"
+                android:text="10 Year"/>
+
+        </RadioGroup>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/kotakHarga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/rectangle"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textHarga"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="@string/maka_estimasi_harga_sekarang"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"/>
+
+        <TextView
+            android:id="@+id/textNominal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Rp. 500000"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"/>
+    </LinearLayout>
+
+        <Button
+            android:id="@+id/predictionButton"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Predict"
+            android:layout_centerInParent="true"
+            android:backgroundTint="@color/ungu_theme"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="45dp"/>
+
+    </LinearLayout>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </FrameLayout>
+</ScrollView>

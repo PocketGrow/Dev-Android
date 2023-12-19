@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">PocketGrow</string>
+
+    <string name="judul_splash">Pocket Grow</string>
+
+    <string name="judul_login">Welcome To Pocket Grow</string>
+    <string name="login">Login</string>
+
+    <string name="judul_register">Register PocketGrow</string>
+    <string name="nama">Nama</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+
+    <string name="tidakpunyaakun">Dont have an account?</string>
+    <string name="sudahpunyaakun">Already have an account?</string>
+
+    <string name="passwordmin8">Minimal Password 8</string>
+    <string name="emailinvalid">Invalid Email</string>
+
+    <string name="login_gagal">logingagal</string>
+
+    <string name="welcome_message">Welcome, %1$s !</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_transaksi">Transaksi</string>
+    <string name="title_news">News</string>
+    <string name="title_profile">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="logout">Logout</string>
+
+    <string name="all_card">See All Cards</string>
+    <string name="save_card">Save_card</string>
+
+    //news section
+    <string name="news_desc_thumbnail">Deskripsi ini Adalah Deskripsi</string>
+    <string name="news_judul_thumbnail">Judul</string>
+    <string name="news_tanggal_thumbnail">10/05/2023</string>
+
+    //news detail section
+    <string name="detail_judul">-</string>
+    <string name="detail_deskripsi">-</string>
+    <string name="detail_tanggal">-</string>
+    //
+
+    <string name="currency_rp">Rp. %s</string>
+    <string name="author">Author</string>
+    <string name="prediction_text">Prediction</string>
+    <string name="kapan_investasi">Since how many months ago did you start investing?</string>
+    <string name="maka_estimasi_harga_sekarang">the estimated investment value today</string>
+
+</resources>

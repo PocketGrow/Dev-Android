@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="1dp"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="10dp"
+    android:layout_margin="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <!-- Left side -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:gravity="start"
+            android:background="#FFF6E6"
+            tools:ignore="MissingConstraints">
+
+            <TextView
+                android:id="@+id/namaThumbnail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="13dp"
+                android:text="@string/news_judul_thumbnail"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:fontFamily="@font/montserrat"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tanggalThumbnail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:text="23 December 2023"
+                android:textColor="@color/gray"
+                android:textSize="15sp"
+                android:textStyle="italic"/>
+        </LinearLayout>
+
+        <!-- Right side -->
+        <TextView
+            android:id="@+id/hargaThumbnail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2.2"
+            android:layout_marginStart="5dp"
+            android:text="Rp. 5000"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

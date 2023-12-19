@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFF6E6">
+
+
+    <TextView
+        android:id="@+id/detailTransactionTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Detail Transaction"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:padding="16dp"
+        android:fontFamily="@font/montserrat"/>
+
+
+    <TextView
+        android:id="@+id/hargaThumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rp. -"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_below="@id/detailTransactionTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp" />
+
+    <LinearLayout
+        android:id="@+id/kotaknama"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/hargaThumbnail"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/rectangle"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textname"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="1.5"
+            android:textStyle="bold"
+            android:text="Name "
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/namaThumbnail"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="-"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/kotakdate"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/kotaknama"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rectangle"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textdate"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="1.5"
+            android:textStyle="bold"
+            android:text="Date "
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tanggalThumbnail"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="-"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/kotakcategory"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/kotakdate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rectangle"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textcategory"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="2"
+            android:textStyle="bold"
+            android:text="Category "
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/categoryThumbnail"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="-"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="45dp"
+        android:text="Delete"
+        android:layout_below="@id/kotakcategory"
+        android:layout_centerHorizontal="true"
+
+        app:backgroundTint="@color/red"
+        android:background="@drawable/rounded_tombol_drawable"/>
+</RelativeLayout>
