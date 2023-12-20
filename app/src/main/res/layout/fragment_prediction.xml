@@ -8,6 +8,7 @@
     tools:context=".ui.prediction.PredictionFragment"
     android:layout_gravity="bottom"
     android:layout_marginBottom="?android:attr/actionBarSize">
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

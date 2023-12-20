@@ -58,15 +58,23 @@ class RegisterActivity : AppCompatActivity() {
             val name = binding.namaTulisan.text.toString()
             val email = binding.emailTulisan.text.toString()
             val password = binding.passwordTulisan.text.toString()
+            val rePassword = binding.rePasswordTulisan.text.toString() // Added line for re-entered password
 
             //tanggal
             val tanggalTulisan = binding.tanggalTulisan
             val dateOfBirth = tanggalTulisan.text.toString()
 
             if (password.length < 8) {
-                binding.passwordTulisanLayout.error = "Harus lebih dari 7 kata"
+                binding.passwordTulisanLayout.error = "Should be more than 7 characters"
             } else {
                 binding.passwordTulisanLayout.error = null
+            }
+
+            if (password != rePassword) {
+                binding.rePasswordTulisanLayout.error = "Password doesn't match"
+                return@setOnClickListener
+            } else {
+                binding.rePasswordTulisanLayout.error = null
             }
 
             if (name.isNotEmpty() && email.isNotEmpty() && password.length >= 8 && dateOfBirth.isNotEmpty()) {
@@ -82,7 +90,7 @@ class RegisterActivity : AppCompatActivity() {
                     } else {
                         // Jika gagal, Anda dapat menampilkan pesan kesalahan atau melakukan tindakan lainnya
                         // Misalnya, menampilkan pesan di TextView tertentu
-                        Toast.makeText(this, "Registrasi gagal, coba lagi.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Failed to register, please try again.", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
