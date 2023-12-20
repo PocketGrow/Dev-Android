@@ -35,7 +35,9 @@ class PredictionFragment : Fragment() {
     private var predictionData: PredictionResponse? = null
     private var prevMoney: Double? = null
     private lateinit var prevInterestButton: RadioButton
+    private lateinit var prevGoldButton : RadioButton
     private var interestIndex: Int = 0
+    private var goldIndex: Int = 0
 
     private val predictionViewModel: PredictionViewModel by viewModels {
         PredictionViewModel.PredictionViewModelFactory(Injection.provideRepository(requireContext()))
@@ -66,10 +68,13 @@ class PredictionFragment : Fragment() {
     }
     private fun setupAction() {
         prevInterestButton = binding.radioButton1Tahun
-        interestIndex = 0
+        prevGoldButton = binding.radioButton1TahunEmas
 
         // init radiogroup state
         prevInterestButton.isChecked = true
+
+        // init radiogroup EMAS state
+        prevGoldButton.isChecked = true
 
         //interest radio button
         binding.radioGroupBulan.setOnCheckedChangeListener { group, checkedId ->
@@ -94,6 +99,34 @@ class PredictionFragment : Fragment() {
                 }
             }
             prevInterestButton.isChecked = true
+            if (predictionData != null) {
+                setData()
+            }
+        }
+
+        //radio button EMAS
+        binding.radioGroupEmas.setOnCheckedChangeListener { group, checkedId ->
+            prevGoldButton.isChecked = false
+            // checkedId is the ID of the RadioButton that is checked
+            when (checkedId) {
+                R.id.radioButton1TahunEmas -> {
+                    prevGoldButton = binding.radioButton1TahunEmas
+                    goldIndex = 0
+                }
+                R.id.radioButton3TahunEmas -> {
+                    prevGoldButton = binding.radioButton3TahunEmas
+                    goldIndex = 1
+                }
+                R.id.radioButton5TahunEmas -> {
+                    prevGoldButton = binding.radioButton5TahunEmas
+                    goldIndex = 2
+                }
+                R.id.radioButton10TahunEmas -> {
+                    prevGoldButton = binding.radioButton10TahunEmas
+                    goldIndex = 3
+                }
+            }
+            prevGoldButton.isChecked = true
             if (predictionData != null) {
                 setData()
             }
@@ -160,18 +193,20 @@ class PredictionFragment : Fragment() {
         // Find the TextView by its ID
         binding.textNominal.setText(
             predictionData?.data?.interest?.calculated!!.get(interestIndex).toString())
+        binding.textNominalEmas.setText(
+            predictionData?.data?.gold!!.get(goldIndex).toString())
     }
 
-    private fun cachePrediction() {
-        var context = requireContext()
-        var sharePreferences = context.getSharedPreferences(AuthPreference.PENGGUNA_PREP, 0)
-
-        // cache to local storage
-        val mengedit = sharePreferences
-            .edit()
-        mengedit.putString("prediction", prevMoney.toString())
-        mengedit.apply()
-    }
+//    private fun cachePrediction() {
+//        var context = requireContext()
+//        var sharePreferences = context.getSharedPreferences(AuthPreference.PENGGUNA_PREP, 0)
+//
+//        // cache to local storage
+//        val mengedit = sharePreferences
+//            .edit()
+//        mengedit.putString("prediction", prevMoney.toString())
+//        mengedit.apply()
+//    }
 
     private fun getLocalCachePrediction(): String? {
         var context = requireContext()

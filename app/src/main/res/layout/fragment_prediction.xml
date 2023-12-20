@@ -104,6 +104,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/rectangle"
         android:orientation="vertical">
 
@@ -174,17 +175,6 @@
                 android:text="10 Year"/>
 
         </RadioGroup>
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/kotakHarga"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/rectangle"
-        android:orientation="vertical">
-
         <TextView
             android:id="@+id/textHarga"
             android:layout_width="match_parent"
@@ -208,10 +198,115 @@
             android:textColor="@color/black"
 
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:fontFamily="@font/montserrat"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/kotakHarga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/rectangle"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textGoldBulan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Since how many months ago did you start investing in Gold"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"/>
+
+        <RadioGroup
+            android:id="@+id/radioGroupEmas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp">
+
+            <RadioButton
+                android:id="@+id/radioButton1TahunEmas"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:background="@drawable/custom_radio_button"
+                android:gravity="center"
+                android:text="1 Year"/>
+
+            <RadioButton
+                android:id="@+id/radioButton3TahunEmas"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:background="@drawable/custom_radio_button"
+                android:gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="3 Year"/>
+
+            <RadioButton
+                android:id="@+id/radioButton5TahunEmas"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:background="@drawable/custom_radio_button"
+                android:gravity="center"
+                android:text="5 Year"/>
+
+            <RadioButton
+                android:id="@+id/radioButton10TahunEmas"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:button="@null"
+                android:background="@drawable/custom_radio_button"
+                android:gravity="center"
+                android:text="10 Year"/>
+
+        </RadioGroup>
+        <TextView
+            android:id="@+id/textHargaEmas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="@string/maka_estimasi_harga_sekarang"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"/>
+        <TextView
+            android:id="@+id/textNominalEmas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Rp. -"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/montserrat"/>
+
     </LinearLayout>
 
         <Button
