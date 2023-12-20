@@ -33,7 +33,7 @@ class PredictionFragment : Fragment() {
     private lateinit var apiConfig: ApiConfig
     private lateinit var apiService: ApiService
     private var predictionData: PredictionResponse? = null
-
+    private var prevMoney: Double? = null
     private lateinit var prevInterestButton: RadioButton
     private var interestIndex: Int = 0
 
@@ -104,9 +104,12 @@ class PredictionFragment : Fragment() {
 
             //nominal
             val nominalString = binding.nominalTextInvestmentValue.text.toString()
-            val nominal = nominalString.toIntOrNull() ?: 0
+            val nominal = nominalString.toDoubleOrNull() ?: 0
 
-            if (nominal != 9999999) {
+            // get cache
+            val sPrevMoney: String? = getLocalCachePrediction()
+
+            if (sPrevMoney == null || !sPrevMoney.equals(nominal.toString())) {
 
                 val context = requireContext()
                 val authPreference = AuthPreference(context)
@@ -157,6 +160,24 @@ class PredictionFragment : Fragment() {
         // Find the TextView by its ID
         binding.textNominal.setText(
             predictionData?.data?.interest?.calculated!!.get(interestIndex).toString())
+    }
+
+    private fun cachePrediction() {
+        var context = requireContext()
+        var sharePreferences = context.getSharedPreferences(AuthPreference.PENGGUNA_PREP, 0)
+
+        // cache to local storage
+        val mengedit = sharePreferences
+            .edit()
+        mengedit.putString("prediction", prevMoney.toString())
+        mengedit.apply()
+    }
+
+    private fun getLocalCachePrediction(): String? {
+        var context = requireContext()
+        var sharePreferences = context.getSharedPreferences(AuthPreference.PENGGUNA_PREP, 0)
+
+        return sharePreferences.getString("prediction", null)
     }
 }
 //    interface ApiService {
