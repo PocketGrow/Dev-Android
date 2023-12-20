@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.viewModels
 import com.example.pocketgrow.R
 import com.example.pocketgrow.adapter.HomeNewsAdapter
 import com.example.pocketgrow.api.ApiConfig
 import com.example.pocketgrow.api.ApiService
+import com.example.pocketgrow.api.response.PredictionResponse
 import com.example.pocketgrow.databinding.FragmentPredictionBinding
 import com.example.pocketgrow.di.Injection
 import com.example.pocketgrow.helper.AuthPreference
@@ -26,37 +28,15 @@ import retrofit2.http.Header
 
 class PredictionFragment : Fragment() {
 
-    // Define a custom callback interface
-    interface ApiResponseCallback {
-        fun onSuccess(response: String)
-        fun onFailure(error: Throwable)
-    }
-
-    interface ApiService {
-        @GET("prediction?money=5000")
-        fun getData(@Header("Authorization") authToken: String?): Call<Any>
-    }
-
-    class ApiClient {
-        companion object {
-            private const val BASE_URL = "https://pocketgrow-be-oqi53a6rlq-uc.a.run.app/api/"
-
-            fun create(): ApiService {
-                val retrofit = Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build()
-
-                return retrofit.create(ApiService::class.java)
-            }
-        }
-    }
-
     private lateinit var binding: FragmentPredictionBinding
+    private lateinit var apiConfig: ApiConfig
+    private lateinit var apiService: ApiService
 
     private val predictionViewModel: PredictionViewModel by viewModels {
         PredictionViewModel.PredictionViewModelFactory(Injection.provideRepository(requireContext()))
     }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,6 +52,14 @@ class PredictionFragment : Fragment() {
 
         // Memanggil setupAction() setelah tata letak ditampilkan
         setupAction()
+
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // Initialize ApiConfig and ApiService
+        apiConfig = ApiConfig()
+        apiService = apiConfig.getApiService()
     }
     private fun setupAction() {
         binding.predictionButton.setOnClickListener {
@@ -100,32 +88,41 @@ class PredictionFragment : Fragment() {
             }
 
             if (nominal != 9999999) {
-                val apiService: ApiService = ApiClient.create()
 
                 val context = requireContext()
                 val authPreference = AuthPreference(context)
                 val token = authPreference.getValue("key")
-                val call = apiService.getData("Bearer $token")
+
+                // Ambil nilai dari nominalTextInvestmentValue
+                val moneyValue = binding.nominalTextInvestmentValue.text.toString()
+
+                val call = apiService.getPrediction("Bearer $token", moneyValue)
                 binding.progressBar.visibility = View.VISIBLE
-                call.enqueue(object : Callback<Any> {
-                    override fun onResponse(call: Call<Any>, response: Response<Any>) {
+
+
+                //viewmodel2an
+                call.enqueue(object : Callback<PredictionResponse> {
+                    override fun onResponse(call: Call<PredictionResponse>, response: Response<PredictionResponse>) {
                         if (response.isSuccessful) {
 //                            callback.onSuccess(response.body() ?: "")
-                            System.out.println("something")
-                            System.out.println(response.toString())
-                            System.out.println(response.body().toString())
+                            println("Prediction successful")
+                            println(response.body().toString())
+
+                            // Find the TextView by its ID
+                            binding.textNominal.setText(
+                                response.body()?.data?.interest?.calculated?.get(0).toString())
                         } else {
 //                            callback.onFailure(Exception("Request failed"))
-                            System.out.println("request failed")
-                            System.out.println(response.toString())
+                            println("request failed")
+                            println(response.toString())
                         }
                         binding.progressBar.visibility = View.INVISIBLE
                     }
 
-                    override fun onFailure(call: Call<Any>, t: Throwable) {
+                    override fun onFailure(call: Call<PredictionResponse>, t: Throwable) {
 //                        callback.onFailure(t)
-                        System.out.println("error")
-                        System.out.println(t.message)
+                        println("error")
+                        println(t.message)
                         binding.progressBar.visibility = View.INVISIBLE
                     }
                 })
@@ -134,3 +131,22 @@ class PredictionFragment : Fragment() {
         }
     }
 }
+//    interface ApiService {
+//        @GET("prediction?money=5000")
+//        fun getData(@Header("Authorization") authToken: String?): Call<Any>
+//    }
+//
+//    class ApiClient {
+//        companion object {
+//            private const val BASE_URL = "https://pocketgrow-be-oqi53a6rlq-uc.a.run.app/api/"
+//
+//            fun create(): ApiService {
+//                val retrofit = Retrofit.Builder()
+//                    .baseUrl(BASE_URL)
+//                    .addConverterFactory(GsonConverterFactory.create())
+//                    .build()
+//
+//                return retrofit.create(ApiService::class.java)
+//            }
+//        }
+//    }

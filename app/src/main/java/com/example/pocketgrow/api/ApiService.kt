@@ -80,8 +80,8 @@ interface ApiService {
     ): Call<DeleteTransactionResponse>
 
     @GET("prediction")
-    suspend fun getPrediction(
+    fun getPrediction(
         @Header("Authorization") authorization: String,
         @Query("money") money : String
-    ): PredictionResponse
+    ): Call<PredictionResponse>
 }

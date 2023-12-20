@@ -14,19 +14,7 @@ data class PredictionResponse(
 	val message: String
 )
 
-data class Interest(
-
-	@field:SerializedName("rates")
-	val rates: List<Any>,
-
-	@field:SerializedName("calculated")
-	val calculated: List<Any>
-)
-
 data class Data(
-
-	@field:SerializedName("data")
-	val data: Data?,
 
 	@field:SerializedName("gold")
 	val gold: List<Any>,
@@ -35,8 +23,17 @@ data class Data(
 	val interest: Interest,
 
 	@field:SerializedName("stock")
-	val stock: List<Int>,
+	val stock: List<Any>,
 
 	@field:SerializedName("house")
 	val house: List<Any>
+)
+
+data class Interest(
+
+	@field:SerializedName("rates")
+	val rates: List<Any>,
+
+	@field:SerializedName("calculated")
+	val calculated: List<Any>
 )
