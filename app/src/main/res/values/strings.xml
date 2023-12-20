@@ -48,7 +48,7 @@
     <string name="currency_rp">Rp. %s</string>
     <string name="author">Author</string>
     <string name="prediction_text">Prediction</string>
-    <string name="kapan_investasi">Since how many months ago did you start investing?</string>
+    <string name="kapan_investasi">Since how many months ago did you start investing</string>
     <string name="maka_estimasi_harga_sekarang">the estimated investment value today</string>
 
 </resources>

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.RadioButton
 import android.widget.TextView
 import androidx.fragment.app.viewModels
@@ -36,8 +37,10 @@ class PredictionFragment : Fragment() {
     private var prevMoney: Double? = null
     private lateinit var prevInterestButton: RadioButton
     private lateinit var prevGoldButton : RadioButton
+    private lateinit var prevHouseButton : RadioButton
     private var interestIndex: Int = 0
     private var goldIndex: Int = 0
+    private var houseIndex: Int = 0
 
     private val predictionViewModel: PredictionViewModel by viewModels {
         PredictionViewModel.PredictionViewModelFactory(Injection.provideRepository(requireContext()))
@@ -69,14 +72,17 @@ class PredictionFragment : Fragment() {
     private fun setupAction() {
         prevInterestButton = binding.radioButton1Tahun
         prevGoldButton = binding.radioButton1TahunEmas
+        prevHouseButton = binding.radioButton1TahunHouse
 
-        // init radiogroup state
+        // init radiogroup NOMINAL state
         prevInterestButton.isChecked = true
-
         // init radiogroup EMAS state
         prevGoldButton.isChecked = true
+        // init radiogroup HOUSE state
+        prevHouseButton.isChecked = true
 
-        //interest radio button
+
+        //interest radio button NOMINAL
         binding.radioGroupBulan.setOnCheckedChangeListener { group, checkedId ->
             prevInterestButton.isChecked = false
             // checkedId is the ID of the RadioButton that is checked
@@ -131,6 +137,33 @@ class PredictionFragment : Fragment() {
                 setData()
             }
         }
+        //radio button HOUSE
+        binding.radioGroupHouse.setOnCheckedChangeListener { group, checkedId ->
+            prevHouseButton.isChecked = false
+            // checkedId is the ID of the RadioButton that is checked
+            when (checkedId) {
+                R.id.radioButton1TahunHouse -> {
+                    prevHouseButton = binding.radioButton1TahunHouse
+                    houseIndex = 0
+                }
+                R.id.radioButton3TahunHouse -> {
+                    prevHouseButton = binding.radioButton3TahunHouse
+                    houseIndex = 1
+                }
+                R.id.radioButton5TahunHouse -> {
+                    prevHouseButton = binding.radioButton5TahunHouse
+                    houseIndex = 2
+                }
+                R.id.radioButton10TahunHouse -> {
+                    prevHouseButton = binding.radioButton10TahunHouse
+                    houseIndex = 3
+                }
+            }
+            prevHouseButton.isChecked = true
+            if (predictionData != null) {
+                setData()
+            }
+        }
 
         binding.predictionButton.setOnClickListener {
             System.out.println("clicked")
@@ -152,8 +185,10 @@ class PredictionFragment : Fragment() {
                 val moneyValue = binding.nominalTextInvestmentValue.text.toString()
 
                 val call = apiService.getPrediction("Bearer $token", moneyValue)
-                binding.progressBar.visibility = View.VISIBLE
 
+                // Loading setup for other components
+                binding.progressBar.visibility = View.VISIBLE
+                binding.predictionButton.isEnabled = false
 
                 //viewmodel2an
                 call.enqueue(object : Callback<PredictionResponse> {
@@ -173,7 +208,10 @@ class PredictionFragment : Fragment() {
                             println("request failed")
                             println(response.toString())
                         }
+
+                        // Loading setup for other components
                         binding.progressBar.visibility = View.INVISIBLE
+                        binding.predictionButton.isEnabled = true
                     }
 
                     override fun onFailure(call: Call<PredictionResponse>, t: Throwable) {
@@ -195,6 +233,8 @@ class PredictionFragment : Fragment() {
             predictionData?.data?.interest?.calculated!!.get(interestIndex).toString())
         binding.textNominalEmas.setText(
             predictionData?.data?.gold!!.get(goldIndex).toString())
+        binding.textNominalHouse.setText(
+            predictionData?.data?.house!!.get(houseIndex).toString())
     }
 
 //    private fun cachePrediction() {

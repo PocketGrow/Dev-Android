@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FFF6E6"
-    tools:context=".ui.prediction.PredictionFragment"
-    android:layout_gravity="bottom"
-    android:layout_marginBottom="?android:attr/actionBarSize">
+    tools:context=".ui.prediction.PredictionFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="?android:attr/actionBarSize">
 
-    <FrameLayout
+<FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -206,7 +208,7 @@
 
 
     <LinearLayout
-        android:id="@+id/kotakHarga"
+        android:id="@+id/kotakEmas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -308,6 +310,107 @@
             android:fontFamily="@font/montserrat"/>
 
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/kotakHouse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/rectangle"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/textHouseBulan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Since how many months ago did you start investing in Housing"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"/>
+
+        <RadioGroup
+            android:id="@+id/radioGroupHouse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp">
+
+            <RadioButton
+                android:id="@+id/radioButton1TahunHouse"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:background="@drawable/custom_radio_button"
+                android:gravity="center"
+                android:text="1 Year"/>
+
+            <RadioButton
+                android:id="@+id/radioButton3TahunHouse"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:background="@drawable/custom_radio_button"
+                android:gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="3 Year"/>
+
+            <RadioButton
+                android:id="@+id/radioButton5TahunHouse"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:button="@null"
+                android:background="@drawable/custom_radio_button"
+                android:gravity="center"
+                android:text="5 Year"/>
+
+            <RadioButton
+                android:id="@+id/radioButton10TahunHouse"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:button="@null"
+                android:background="@drawable/custom_radio_button"
+                android:gravity="center"
+                android:text="10 Year"/>
+
+        </RadioGroup>
+        <TextView
+            android:id="@+id/textHargaHouse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="@string/maka_estimasi_harga_sekarang"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"/>
+        <TextView
+            android:id="@+id/textNominalHouse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Rp. -"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="@font/montserrat"/>
+    </LinearLayout>
 
         <Button
             android:id="@+id/predictionButton"
@@ -319,18 +422,22 @@
             android:backgroundTint="@color/ungu_theme"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginBottom="45dp"/>
+            android:layout_marginBottom="45dp"
+            android:enabled="true"
+            />
 
     </LinearLayout>
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
 
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+
     </FrameLayout>
 </ScrollView>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="90dp"
+        android:background="#99FFFFFF"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>
+
