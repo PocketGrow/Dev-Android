@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
 import android.widget.TextView
 import androidx.fragment.app.viewModels
 import com.example.pocketgrow.R
@@ -31,12 +32,14 @@ class PredictionFragment : Fragment() {
     private lateinit var binding: FragmentPredictionBinding
     private lateinit var apiConfig: ApiConfig
     private lateinit var apiService: ApiService
+    private var predictionData: PredictionResponse? = null
+
+    private lateinit var prevInterestButton: RadioButton
+    private var interestIndex: Int = 0
 
     private val predictionViewModel: PredictionViewModel by viewModels {
         PredictionViewModel.PredictionViewModelFactory(Injection.provideRepository(requireContext()))
     }
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,30 +65,46 @@ class PredictionFragment : Fragment() {
         apiService = apiConfig.getApiService()
     }
     private fun setupAction() {
+        prevInterestButton = binding.radioButton1Tahun
+        interestIndex = 0
+
+        // init radiogroup state
+        prevInterestButton.isChecked = true
+
+        //interest radio button
+        binding.radioGroupBulan.setOnCheckedChangeListener { group, checkedId ->
+            prevInterestButton.isChecked = false
+            // checkedId is the ID of the RadioButton that is checked
+            when (checkedId) {
+                R.id.radioButton1Tahun -> {
+                    prevInterestButton = binding.radioButton1Tahun
+                    interestIndex = 0
+                }
+                R.id.radioButton3Tahun -> {
+                    prevInterestButton = binding.radioButton3Tahun
+                    interestIndex = 1
+                }
+                R.id.radioButton5Tahun -> {
+                    prevInterestButton = binding.radioButton5Tahun
+                    interestIndex = 2
+                }
+                R.id.radioButton10Tahun -> {
+                    prevInterestButton = binding.radioButton10Tahun
+                    interestIndex = 3
+                }
+            }
+            prevInterestButton.isChecked = true
+            if (predictionData != null) {
+                setData()
+            }
+        }
+
         binding.predictionButton.setOnClickListener {
             System.out.println("clicked")
 
             //nominal
             val nominalString = binding.nominalTextInvestmentValue.text.toString()
             val nominal = nominalString.toIntOrNull() ?: 0
-
-            //category
-            val categoryRadioGroup = binding.radioGroupBulan
-            val type = when (categoryRadioGroup.checkedRadioButtonId) {
-                R.id.radioButton1Tahun -> {
-                    "1"
-                }
-                R.id.radioButton3Tahun -> {
-                    "3"
-                }
-                R.id.radioButton5Tahun -> {
-                    "5"
-                }
-                R.id.radioButton10Tahun -> {
-                    "10"
-                }
-                else -> ""
-            }
 
             if (nominal != 9999999) {
 
@@ -108,9 +127,11 @@ class PredictionFragment : Fragment() {
                             println("Prediction successful")
                             println(response.body().toString())
 
-                            // Find the TextView by its ID
-                            binding.textNominal.setText(
-                                response.body()?.data?.interest?.calculated?.get(0).toString())
+                            if (response.body() != null) {
+                                predictionData = response.body()!!
+                            }
+
+                            setData()
                         } else {
 //                            callback.onFailure(Exception("Request failed"))
                             println("request failed")
@@ -129,6 +150,13 @@ class PredictionFragment : Fragment() {
 
             }
         }
+    }
+
+    private fun setData() {
+        // set all
+        // Find the TextView by its ID
+        binding.textNominal.setText(
+            predictionData?.data?.interest?.calculated!!.get(interestIndex).toString())
     }
 }
 //    interface ApiService {
