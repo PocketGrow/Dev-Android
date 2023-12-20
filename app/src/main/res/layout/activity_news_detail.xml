@@ -5,20 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:padding="5dp"
     tools:context=".ui.newsdetail.NewsDetailActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="60dp"
-        app:cardCornerRadius="20dp">
+        android:elevation="60dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:cardCornerRadius="20dp">
+            android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/newsdetail_gambar"
@@ -26,51 +23,60 @@
                 android:layout_height="250dp"
                 tools:src="@tools:sample/backgrounds/scenic"
                 android:transitionName="thumbnail"
+                android:scaleType="centerCrop"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/newsdetail_nama"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="1dp"
-                android:layout_marginTop="11dp"
-                android:text="@string/detail_judul"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:gravity="center_horizontal" />
+                android:orientation="vertical"
+                android:padding="16sp"
+                >
 
-            <TextView
-                android:id="@+id/newsdetail_author"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="11dp"
-                android:text="@string/author"
-                android:textColor="@color/gray"
-                android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/newsdetail_nama"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="11dp"
+                    android:text="@string/detail_judul"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:gravity="center_horizontal" />
 
-            <TextView
-                android:id="@+id/newsdetail_deskripsi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="@string/detail_deskripsi"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="normal"
-                app:layout_constraintTop_toBottomOf="@+id/namaThumbnail"/>
+                <TextView
+                    android:id="@+id/newsdetail_author"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11dp"
+                    android:text="@string/author"
+                    android:textColor="@color/gray"
+                    android:textSize="20sp" />
 
-            <TextView
-                android:id="@+id/newsdetail_tanggal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="29dp"
-                android:layout_marginEnd="10dp"
-                android:text="@string/detail_tanggal"
-                android:textColor="@color/gray"
-                android:textSize="18sp"
-                android:textStyle="italic"
-                android:gravity="end"/>
+                <TextView
+                    android:id="@+id/newsdetail_deskripsi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/detail_deskripsi"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="normal"
+                    app:layout_constraintTop_toBottomOf="@+id/namaThumbnail"/>
+
+                <TextView
+                    android:id="@+id/newsdetail_tanggal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="29dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/detail_tanggal"
+                    android:textColor="@color/gray"
+                    android:textSize="18sp"
+                    android:textStyle="italic"
+                    android:gravity="end"/>
+            </LinearLayout>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

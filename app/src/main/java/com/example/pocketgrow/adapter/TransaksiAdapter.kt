@@ -56,16 +56,13 @@ class TransaksiAdapter : PagingDataAdapter<TransactionItem, TransaksiAdapter.Vie
             }
         }
         private fun truncateNamaThumbnail(namaThumbnail: String?): String {
-            return namaThumbnail?.let {
-                val words = it.split(" ")
-                if (words.size > 2) {
-                    val truncatedWords = words.subList(0, 2)
-                    val truncatedString = truncatedWords.joinToString(" ") + "..."
-                    truncatedString
-                } else {
-                    it
+            val maxLength: Int = 12
+            if (namaThumbnail != null) {
+                if (namaThumbnail.length > maxLength) {
+                    return namaThumbnail?.substring(0, maxLength-3) + "..."
                 }
-            } ?: ""
+            }
+            return namaThumbnail!!
         }
     }
 

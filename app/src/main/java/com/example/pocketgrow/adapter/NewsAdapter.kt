@@ -35,12 +35,24 @@ class NewsAdapter : PagingDataAdapter<NewsItem, NewsAdapter.ViewHolder>(DIFF_CAL
     class ViewHolder(private val binding: NewsItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: NewsItem) {
-            binding.namaThumbnail.text = data.title
+
+            val truncatedName = truncateNamaThumbnail(data.title)
+            binding.namaThumbnail.text = truncatedName
+
             binding.tanggalThumbnail.text = dateFormat(data.createDate)
             Glide.with(itemView)
                 .load(data.headerImg)
                 .centerCrop()
                 .into(binding.gambarThumbnail)
+        }
+        private fun truncateNamaThumbnail(namaThumbnail: String?): String {
+            val maxLength: Int = 60
+            if (namaThumbnail != null) {
+                if (namaThumbnail.length > maxLength) {
+                    return namaThumbnail?.substring(0, maxLength-3) + "..."
+                }
+            }
+            return namaThumbnail!!
         }
     }
 

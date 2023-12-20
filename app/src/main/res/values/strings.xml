@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PocketGrow</string>
 
-    <string name="judul_splash">Pocket Grow</string>
+    <string name="judul_splash">PocketGrow</string>
 
     <string name="judul_login">Welcome To Pocket Grow</string>
     <string name="login">Login</string>
