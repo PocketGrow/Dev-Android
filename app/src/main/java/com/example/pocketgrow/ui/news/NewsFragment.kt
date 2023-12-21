@@ -49,8 +49,6 @@ class NewsFragment : Fragment() {
                 startActivity(
                     Intent(requireContext(), NewsDetailActivity::class.java)
                         .putExtra("news_id", data.id.toString()))
-                val text = "halo"
-                Toast.makeText(requireContext(), text, Toast.LENGTH_SHORT).show()
             }
         })
         return view

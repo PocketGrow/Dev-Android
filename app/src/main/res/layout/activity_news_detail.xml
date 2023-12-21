@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16sp"
+                android:padding="24sp"
                 >
 
                 <TextView
@@ -56,13 +56,14 @@
 
                 <TextView
                     android:id="@+id/newsdetail_deskripsi"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:text="@string/detail_deskripsi"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="normal"
+                    android:gravity="fill_horizontal"
                     app:layout_constraintTop_toBottomOf="@+id/namaThumbnail"/>
 
                 <TextView

@@ -101,7 +101,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvemail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="45dp"
         android:background="@drawable/rectangle_red"
         android:orientation="horizontal">
 
