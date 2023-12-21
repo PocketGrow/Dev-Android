@@ -1,6 +1,7 @@
 package com.example.pocketgrow.ui.prediction
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,6 +19,12 @@ import com.example.pocketgrow.api.response.PredictionResponse
 import com.example.pocketgrow.databinding.FragmentPredictionBinding
 import com.example.pocketgrow.di.Injection
 import com.example.pocketgrow.helper.AuthPreference
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.coroutines.runBlocking
 import retrofit2.Call
 import retrofit2.Callback
@@ -41,6 +48,8 @@ class PredictionFragment : Fragment() {
     private var interestIndex: Int = 0
     private var goldIndex: Int = 0
     private var houseIndex: Int = 0
+
+    lateinit var lineChart: LineChart
 
     private val predictionViewModel: PredictionViewModel by viewModels {
         PredictionViewModel.PredictionViewModelFactory(Injection.provideRepository(requireContext()))
@@ -68,6 +77,7 @@ class PredictionFragment : Fragment() {
         // Initialize ApiConfig and ApiService
         apiConfig = ApiConfig()
         apiService = apiConfig.getApiService()
+
     }
     private fun setupAction() {
         prevInterestButton = binding.radioButton1Tahun
@@ -188,6 +198,7 @@ class PredictionFragment : Fragment() {
 
                 // Loading setup for other components
                 binding.progressBar.visibility = View.VISIBLE
+                binding.kotakStock.visibility = View.GONE
                 binding.predictionButton.isEnabled = false
 
                 //viewmodel2an
@@ -212,6 +223,7 @@ class PredictionFragment : Fragment() {
                         // Loading setup for other components
                         binding.progressBar.visibility = View.INVISIBLE
                         binding.predictionButton.isEnabled = true
+                        binding.kotakStock.visibility = View.VISIBLE
                     }
 
                     override fun onFailure(call: Call<PredictionResponse>, t: Throwable) {
@@ -219,6 +231,7 @@ class PredictionFragment : Fragment() {
                         println("error")
                         println(t.message)
                         binding.progressBar.visibility = View.INVISIBLE
+                        binding.kotakStock.visibility = View.GONE
                     }
                 })
 
@@ -229,24 +242,42 @@ class PredictionFragment : Fragment() {
     private fun setData() {
         // set all
         // Find the TextView by its ID
-        binding.textNominal.setText(
-            predictionData?.data?.interest?.calculated!!.get(interestIndex).toString())
-        binding.textNominalEmas.setText(
-            predictionData?.data?.gold!!.get(goldIndex).toString())
-        binding.textNominalHouse.setText(
-            predictionData?.data?.house!!.get(houseIndex).toString())
-    }
+        val interestText = "Rp. ${predictionData?.data?.interest?.calculated!!.get(interestIndex)}"
+        binding.textNominal.text = interestText
 
-//    private fun cachePrediction() {
-//        var context = requireContext()
-//        var sharePreferences = context.getSharedPreferences(AuthPreference.PENGGUNA_PREP, 0)
-//
-//        // cache to local storage
-//        val mengedit = sharePreferences
-//            .edit()
-//        mengedit.putString("prediction", prevMoney.toString())
-//        mengedit.apply()
-//    }
+        val goldText = "Rp. ${predictionData?.data?.gold!!.get(goldIndex)} million"
+        binding.textNominalEmas.text = goldText
+
+        val houseText = "${predictionData?.data?.house!!.get(houseIndex)} %"
+        binding.textNominalHouse.text = houseText
+
+        lineChart = binding.lineChart
+
+        val kasus = ArrayList<Entry>()
+        for (counter in 1..12) {
+            kasus.add(Entry(counter.toFloat(), predictionData?.data?.stock?.get(counter-1)!!))
+        }
+
+        val kasusLineDataSet = LineDataSet(kasus, "Stock (Rp / Months)")
+        kasusLineDataSet.mode = LineDataSet.Mode.CUBIC_BEZIER
+        kasusLineDataSet.color = Color.BLUE
+        kasusLineDataSet.circleRadius = 5f
+        kasusLineDataSet.setCircleColor(Color.BLUE)
+
+
+//Setup Legend
+        val legend = lineChart.legend
+        legend.isEnabled = true
+        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP)
+        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER)
+        legend.setOrientation(Legend.LegendOrientation.HORIZONTAL)
+        legend.setDrawInside(false)
+
+        lineChart.description.isEnabled = false
+        lineChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
+        lineChart.data = LineData(kasusLineDataSet)
+        lineChart.animateXY(100, 500)
+    }
 
     private fun getLocalCachePrediction(): String? {
         var context = requireContext()
@@ -255,22 +286,3 @@ class PredictionFragment : Fragment() {
         return sharePreferences.getString("prediction", null)
     }
 }
-//    interface ApiService {
-//        @GET("prediction?money=5000")
-//        fun getData(@Header("Authorization") authToken: String?): Call<Any>
-//    }
-//
-//    class ApiClient {
-//        companion object {
-//            private const val BASE_URL = "https://pocketgrow-be-oqi53a6rlq-uc.a.run.app/api/"
-//
-//            fun create(): ApiService {
-//                val retrofit = Retrofit.Builder()
-//                    .baseUrl(BASE_URL)
-//                    .addConverterFactory(GsonConverterFactory.create())
-//                    .build()
-//
-//                return retrofit.create(ApiService::class.java)
-//            }
-//        }
-//    }

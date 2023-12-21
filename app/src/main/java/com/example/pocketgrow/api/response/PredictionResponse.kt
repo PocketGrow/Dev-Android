@@ -23,7 +23,7 @@ data class Data(
 	val interest: Interest,
 
 	@field:SerializedName("stock")
-	val stock: List<Any>,
+	val stock: List<Float>,
 
 	@field:SerializedName("house")
 	val house: List<Any>

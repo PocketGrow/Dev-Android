@@ -23,9 +23,9 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/ungu_theme"
+        android:fontFamily="@font/montserrat"
         android:gravity="center"
-        android:padding="16dp"
-        android:fontFamily="@font/montserrat"/>
+        android:padding="16dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,33 +42,19 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textNama"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="start"
-            android:layout_weight="1.5"
-            android:textStyle="bold"
-            android:text="Time Machine"
-            android:textSize="24sp"
-            android:textColor="@color/black"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:fontFamily="@font/montserrat"/>
-
-        <TextView
             android:id="@+id/nilaiNama"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:gravity="start"
+            android:textColor="@color/ungu_theme"
+            android:fontFamily="@font/montserrat"
             android:layout_weight="1.5"
             android:textStyle="normal"
             android:text="Investment Value /Month "
-            android:textSize="20sp"
-            android:textColor="@color/black" />
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -117,7 +103,8 @@
             android:gravity="start"
             android:text="@string/kapan_investasi"
             android:textSize="20sp"
-            android:textColor="@color/black"
+            android:textColor="@color/ungu_theme"
+            android:fontFamily="@font/montserrat"
 
             android:layout_marginTop="20dp"
             android:layout_marginStart="32dp"
@@ -184,7 +171,8 @@
             android:gravity="start"
             android:text="@string/maka_estimasi_harga_sekarang"
             android:textSize="20sp"
-            android:textColor="@color/black"
+            android:textColor="@color/ungu_theme"
+            android:fontFamily="@font/montserrat"
 
             android:layout_marginTop="20dp"
             android:layout_marginStart="32dp"
@@ -222,7 +210,8 @@
             android:gravity="start"
             android:text="Since how many months ago did you start investing in Gold"
             android:textSize="20sp"
-            android:textColor="@color/black"
+            android:textColor="@color/ungu_theme"
+            android:fontFamily="@font/montserrat"
 
             android:layout_marginTop="20dp"
             android:layout_marginStart="32dp"
@@ -289,7 +278,8 @@
             android:gravity="start"
             android:text="@string/maka_estimasi_harga_sekarang"
             android:textSize="20sp"
-            android:textColor="@color/black"
+            android:textColor="@color/ungu_theme"
+            android:fontFamily="@font/montserrat"
 
             android:layout_marginTop="20dp"
             android:layout_marginStart="32dp"
@@ -324,7 +314,8 @@
             android:gravity="start"
             android:text="Since how many months ago did you start investing in Housing"
             android:textSize="20sp"
-            android:textColor="@color/black"
+            android:textColor="@color/ungu_theme"
+            android:fontFamily="@font/montserrat"
 
             android:layout_marginTop="20dp"
             android:layout_marginStart="32dp"
@@ -391,7 +382,8 @@
             android:gravity="start"
             android:text="@string/maka_estimasi_harga_sekarang"
             android:textSize="20sp"
-            android:textColor="@color/black"
+            android:textColor="@color/ungu_theme"
+            android:fontFamily="@font/montserrat"
 
             android:layout_marginTop="20dp"
             android:layout_marginStart="32dp"
@@ -411,7 +403,37 @@
             android:layout_marginEnd="32dp"
             android:fontFamily="@font/montserrat"/>
     </LinearLayout>
-
+    <LinearLayout
+        android:id="@+id/kotakStock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:visibility="gone"
+        android:background="@drawable/rectangle"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/textHargaStock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Stocks Value"
+            android:textSize="20sp"
+            android:textColor="@color/ungu_theme"
+            android:fontFamily="@font/montserrat"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"/>
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChart"
+            android:minHeight="200dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
         <Button
             android:id="@+id/predictionButton"
             android:layout_marginTop="10dp"
@@ -424,6 +446,8 @@
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="45dp"
             android:enabled="true"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@android:color/white"
             />
 
     </LinearLayout>
